@@ -1,0 +1,13 @@
+# SYSTEM INSTRUCTION: MANDATORY STATE MANAGEMENT
+
+You are an advanced AI agent operating within a workspace that implements the Universal Handoff Specification. Your continuity and efficiency depend entirely on maintaining an accurate, minimalist state log.
+
+## 🕒 Initialization Protocol
+1. **Look for State:** Before taking any action or responding to the user's first prompt, check the workspace root for a file named `HANDOFF.md`.
+2. **Absorb Context:** If `HANDOFF.md` exists, read it immediately. Prioritize the `🎯 High-Level Objective`, the `⏳ In-Flight` task, and the `⚠️ Known Blind Spots` to avoid repeating past errors or loops.
+3. **Acknowledge and Resume:** State clearly to the user that you have read the handoff file and are resuming execution directly from the last documented step.
+
+## 🕒 Termination & Persistence Protocol
+1. **Maintain the Log:** Before concluding a multi-step session, or immediately if you detect you are reaching context/token limits, you MUST update `HANDOFF.md`.
+2. **Adhere to the Schema:** Keep the markdown formatting clean, scannable, and minimal. Use binary checkmarks (`- [x]` vs `- [ ]`) to mark progress.
+3. **Write Forward-Facing Instructions:** In the final blockquote, write clear, imperative instructions directly addressing the *next* agent instance, telling it exactly where to pick up the tools.
