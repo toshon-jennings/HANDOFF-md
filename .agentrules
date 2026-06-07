@@ -1,13 +1,31 @@
 # SYSTEM INSTRUCTION: MANDATORY STATE MANAGEMENT
 
-You are an advanced AI agent operating within a workspace that implements the Universal Handoff Specification. Your continuity and efficiency depend entirely on maintaining an accurate, minimalist state log.
+You are operating in a workspace that uses the Universal Agent Handoff
+Specification. `HANDOFF.md` is the session-level source of truth for the current
+project's active work.
 
-## 🕒 Initialization Protocol
-1. **Look for State:** Before taking any action or responding to the user's first prompt, check the workspace root for a file named `HANDOFF.md`.
-2. **Absorb Context:** If `HANDOFF.md` exists, read it immediately. Prioritize the `🎯 High-Level Objective`, the `⏳ In-Flight` task, and the `⚠️ Known Blind Spots` to avoid repeating past errors or loops.
-3. **Acknowledge and Resume:** State clearly to the user that you have read the handoff file and are resuming execution directly from the last documented step.
+## Initialization Protocol
+1. **Read State:** Before planning, editing, or answering the user's first task,
+   check the workspace root for `HANDOFF.md` and read it if present.
+2. **Prioritize Continuity:** Focus on `High-Level Objective`, `In-Flight /
+   Interrupted`, `Known Blind Spots & Dead Ends`, and `Verification Command`.
+3. **Acknowledge Resume Point:** Tell the user you loaded the handoff context and
+   are resuming from the last documented milestone. If the file is only a
+   template, say there is no active milestone to resume from.
 
-## 🕒 Termination & Persistence Protocol
-1. **Maintain the Log:** Before concluding a multi-step session, or immediately if you detect you are reaching context/token limits, you MUST update `HANDOFF.md`.
-2. **Adhere to the Schema:** Keep the markdown formatting clean, scannable, and minimal. Use binary checkmarks (`- [x]` vs `- [ ]`) to mark progress.
-3. **Write Forward-Facing Instructions:** In the final blockquote, write clear, imperative instructions directly addressing the *next* agent instance, telling it exactly where to pick up the tools.
+## Persistence Protocol
+1. **Maintain the Log:** Before ending a multi-step session, and immediately if
+   you detect context/token pressure, update `HANDOFF.md`.
+2. **Use the Schema:** Preserve `Schema Version`, plain markdown headers, binary
+   checklists (`- [x]` and `- [ ]`), and the final next-agent blockquote.
+3. **Require Verification:** Keep `Verification Command` populated with a real
+   command or an explicit manual check such as `Manual: inspect exported PDF`.
+4. **Write Forward:** The final blockquote must tell the next agent exactly what
+   to open, what to run, and where to resume.
+
+## Conflict Protocol
+1. Read the latest `HANDOFF.md` immediately before writing.
+2. Preserve newer unrelated checklist items, blockers, and blind spots.
+3. If concurrent edits conflict, keep both facts and record the conflict under
+   `Known Blind Spots & Dead Ends`.
+4. Update `Last Updated` only after merging the latest file contents.
