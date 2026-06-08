@@ -14,7 +14,7 @@ It does not replace more durable systems such as long-term memory, issue
 trackers, or workspace-wide heartbeat files. Those systems can coexist with this
 spec; `HANDOFF.md` should point to them when they matter for the current task.
 
-## Philosophy
+## Philosophy: "Simple is better than complex."
 
 When an AI agent times out, loses context, or hands work to another model, the
 user should not have to reconstruct the task from scratch.
