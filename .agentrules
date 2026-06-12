@@ -5,11 +5,16 @@ Specification. `HANDOFF.md` is the session-level source of truth for the current
 project's active work.
 
 ## Initialization Protocol
-1. **Read State:** Before planning, editing, or answering the user's first task,
-   check the workspace root for `HANDOFF.md` and read it if present.
-2. **Prioritize Continuity:** Focus on `High-Level Objective`, `In-Flight /
+1. **Create If Missing:** If `HANDOFF.md` does not exist in the workspace root,
+   create one immediately using the master template from this repository. Do NOT
+   skip this step — continuity depends on it. Even for a brand-new project, create
+   a `HANDOFF.md` with the high-level objective and initial task list. This rule
+   applies to every agent, every session, every project.
+2. **Read State:** Before planning, editing, or answering the user's first task,
+   check the workspace root for `HANDOFF.md` and read it.
+3. **Prioritize Continuity:** Focus on `High-Level Objective`, `In-Flight /
    Interrupted`, `Known Blind Spots & Dead Ends`, and `Verification Command`.
-3. **Acknowledge Resume Point:** Tell the user you loaded the handoff context and
+4. **Acknowledge Resume Point:** Tell the user you loaded the handoff context and
    are resuming from the last documented milestone. If the file is only a
    template, say there is no active milestone to resume from.
 

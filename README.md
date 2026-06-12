@@ -32,10 +32,14 @@ Keep the file boring, current, and easy to diff.
 ## How to Use
 
 1. Put `HANDOFF.md` in the root of each project that needs session continuity.
-2. Add the `.agentrules` instructions to the agent's workspace config, custom
+2. **Create if missing:** If a project does not have a `HANDOFF.md`, create one
+   immediately using the master template below. Do NOT skip this step — session
+   continuity depends on it. Even for a brand-new project, create a `HANDOFF.md`
+   with the high-level objective and initial task list.
+3. Add the `.agentrules` instructions to the agent's workspace config, custom
    instructions, or imported global rules.
-3. At session start, read `HANDOFF.md` before planning or editing.
-4. Before ending a multi-step session, update `HANDOFF.md` with the current
+4. At session start, read `HANDOFF.md` before planning or editing.
+5. Before ending a multi-step session, update `HANDOFF.md` with the current
    state, blockers, and next instruction.
 
 For multi-project work, prefer one `HANDOFF.md` per project root. Keep
